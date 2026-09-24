@@ -129,6 +129,8 @@
       .shot img{transition:none}
     }
   </style>
+  <link rel="stylesheet" href="dr-theme.css" />
+  <script src="dr-theme.js"></script>
   <script>
     // Inactivity timeout: redirect to index.html after 10 minutes
     let inactivityTimer;
@@ -161,7 +163,7 @@
 
 <body>
   <!-- Back button -->
-  <button class="back" aria-label="Go Back" onclick="smartBack('index.html')">←</button>
+  <a class="back" href="index.html" aria-label="Back to Digital Resilience" onclick="event.preventDefault(); smartBack('index.html')">←</a>
 
   <!-- Corner PNG top-right -->
   <a href="index.html" aria-label="Back to homepage"><img class="corner-img" src="Assets/AIthumb2.png" alt="Business Intelligence icon"></a>
@@ -174,19 +176,19 @@
     <section class="cols" aria-label="AI Assistant Showcase">
       <article class="card">
         <h3>AI Assistant<br>for SPL</h3>
-        <a class="shot" href="https://splunk.github.io/DR-portal/AIassistants1.html" target="_self" tabindex="0" aria-label="Open SPL Assistant demo">
+        <a class="shot" href="AIassistants1.html" target="_self" tabindex="0" aria-label="Open SPL Assistant demo">
           <img src="Assets/ai1.png" alt="SPL Assistant UI screenshot">
         </a>
       </article>
       <article class="card">
         <h3>AI Assistant<br>in Observability Cloud</h3>
-        <a class="shot" href="https://splunk.github.io/DR-portal/AIassistants2.html" target="_self" tabindex="0" aria-label="Open Observability Assistant demo">
+        <a class="shot" href="AIassistants2.html" target="_self" tabindex="0" aria-label="Open Observability Assistant demo">
           <img src="Assets/ai2.png" alt="Observability Assistant UI screenshot">
         </a>
       </article>
       <article class="card">
         <h3>AI Assistant<br>in Enterprise Security</h3>
-        <a class="shot" href="https://splunk.github.io/DR-portal/AIassistants3.html" target="_self" tabindex="0" aria-label="Open Enterprise Security Assistant demo">
+        <a class="shot" href="AIassistants3.html" target="_self" tabindex="0" aria-label="Open Enterprise Security Assistant demo">
           <img src="Assets/ai3.png" alt="Enterprise Security Assistant UI screenshot">
         </a>
       </article>

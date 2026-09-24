@@ -157,6 +157,8 @@
       .fullscreen-btn .icon{font-size:14px}
     }
   </style>
+  <link rel="stylesheet" href="dr-theme.css" />
+  <script src="dr-theme.js"></script>
   <script>
     // Inactivity timeout: redirect to index.html after 10 minutes
     let inactivityTimer;
@@ -214,7 +216,7 @@
 <body>
 
   <!-- Back button -->
-  <button class="back" aria-label="Go Back" onclick="smartBack('index.html')">←</button>
+  <a class="back" href="index.html" aria-label="Back to Digital Resilience" onclick="event.preventDefault(); smartBack('index.html')">←</a>
 
   <!-- Fullscreen button (ai1.html exact) -->
   <button class="fullscreen-btn" aria-label="Toggle Fullscreen" title="Toggle Fullscreen (F)" onclick="toggleFullscreen()">

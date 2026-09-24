@@ -33,15 +33,102 @@
 
     .cols{display:flex;justify-content:space-between;gap:80px;align-items:flex-start;flex-wrap:wrap}
     .card{flex:1;min-width:320px;max-width:480px;display:flex;flex-direction:column;align-items:center;text-align:center}
-    .card h3{margin:0 0 20px;font-size:22px;font-weight:800;letter-spacing:.2px;line-height:1.3;text-align:center}
+    html[data-brand] body .cols .card{
+      padding:0 !important;
+      border:0 !important;
+      border-radius:0 !important;
+      background:none !important;
+      box-shadow:none !important;
+      filter:none !important;
+      backdrop-filter:none !important;
+      -webkit-backdrop-filter:none !important;
+      align-self:stretch;
+    }
+    html[data-brand] body .cols .card::before,
+    html[data-brand] body .cols .card::after{display:none !important}
+    html[data-brand] body .cols .card:hover,
+    html[data-brand] body .cols .card:focus-within{
+      border-color:transparent !important;
+      background:none !important;
+      box-shadow:none !important;
+      filter:none !important;
+      transform:none !important;
+    }
+    .card h3{display:flex;align-items:flex-end;justify-content:center;min-height:58px;margin:0 0 20px;font-size:22px;font-weight:800;letter-spacing:.2px;line-height:1.3;text-align:center}
 
     /* Interactive PNG wrapper */
-    .shot{display:inline-block;border-radius:14px;overflow:visible;outline:none;background:none;box-shadow:none}
+    .shot{display:flex;align-items:center;justify-content:center;min-height:220px;border-radius:14px;overflow:visible;outline:none;background:none;box-shadow:none}
     .shot img{width:100%;height:auto;display:block;border-radius:14px;transition:transform .35s ease, filter .35s ease;margin:0 auto}
     .shot:hover img, .shot:focus-visible img, .shot.touched img{
       transform:translateY(-2px);
       filter: drop-shadow(0 0 2px var(--o)) drop-shadow(0 0 3px var(--p)) drop-shadow(0 0 4px var(--v));
     }
+    .security-info-btn{
+      display:block;width:min(385px,100%);margin:auto auto 8px;padding:17px 20px;
+      border:2px solid transparent;border-radius:7px;text-align:center;color:#fff;cursor:pointer;
+      background:linear-gradient(#000,#000) padding-box,
+                 linear-gradient(180deg,var(--p) 0%,var(--p) 20%,var(--o) 100%) border-box;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 14px 30px rgba(0,0,0,.34);
+      backdrop-filter:none;-webkit-backdrop-filter:none;
+      font-family:Inter,'Lexend',system-ui,sans-serif;
+      position:relative;top:80px;overflow:hidden;isolation:isolate;
+      transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;
+    }
+    .security-info-btn::before{
+      content:"";position:absolute;inset:-70% -35%;z-index:0;pointer-events:none;
+      background:linear-gradient(110deg,transparent 36%,rgba(255,255,255,.22) 49%,transparent 62%);
+      transform:translateX(-65%) rotate(4deg);transition:transform .55s ease;
+    }
+    .security-info-btn:hover{transform:translateY(-2px);filter:brightness(1.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 18px 36px rgba(0,0,0,.4)}
+    .security-info-btn:hover::before,.security-info-btn:focus-visible::before{transform:translateX(65%) rotate(4deg)}
+    .security-info-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+    .security-info-copy{position:relative;z-index:1;display:block;min-width:0}
+    .security-info-eyebrow{display:block;margin-bottom:5px;font-size:12px;font-weight:400;line-height:1.1}
+    .security-info-headline{display:block;font-size:20px;font-weight:700;line-height:1.1;letter-spacing:-.015em;white-space:nowrap}
+    .security-info-headline strong{color:var(--o)}
+    .security-info-icon{display:none}
+
+    body.modal-open{overflow:hidden}
+    dialog.security-dialog{
+      width:min(900px,94vw);max-height:92vh;padding:0 !important;border:0 !important;border-radius:20px !important;
+      color:#f7f9ff;background:rgba(10,18,23,.04) !important;overflow:hidden;
+      box-shadow:0 28px 90px rgba(0,0,0,.72) !important;
+      backdrop-filter:blur(26px) saturate(155%);-webkit-backdrop-filter:blur(26px) saturate(155%);
+    }
+    dialog.security-dialog::backdrop{background:rgba(0,0,0,.58);backdrop-filter:blur(4px)}
+    .security-dialog-panel{
+      position:relative;padding:0;
+      background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.025) 34%,rgba(21,29,33,.46) 78%);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.2),inset 0 0 0 1px rgba(255,255,255,.055);
+    }
+    .security-carousel{width:min(820px,100%);max-height:84vh;overflow:hidden;margin:0 auto;padding:32px 28px 22px;color:#f4f6f8}
+    .security-track{display:flex;width:100%;transition:transform .5s cubic-bezier(.2,.75,.2,1)}
+    .security-slide{
+      position:relative;flex:0 0 100%;min-width:100%;height:min(520px,76vh);overflow:auto;
+      padding:48px 56px 88px;text-align:left;background:none;border:0;box-shadow:none;
+      font:500 clamp(13px,1vw,15px)/1.4 'Lexend',system-ui,sans-serif;
+    }
+    .security-slide h2{margin:0 0 18px;font-size:clamp(22px,2vw,30px);line-height:1.15}
+    .security-slide p{margin:0;color:rgba(255,255,255,.72)}
+    .security-copy p{margin:0 0 16px;color:#f4f6f8}
+    .security-copy strong{font-weight:750}
+    .security-slide-kicker{display:block;margin-bottom:9px;color:rgba(255,255,255,.58);font-size:12px;font-weight:500;letter-spacing:.03em;text-transform:uppercase}
+    .security-copy h3{margin:20px 0 10px;font-size:17px;line-height:1.25}
+    .security-copy ul{margin:0;padding-left:1.35em}
+    .security-copy li{margin:0 0 8px;padding-left:6px;line-height:1.3}
+    .security-service-heading{padding-top:16px;border-top:1px solid var(--p);color:var(--p);font-size:17px !important}
+    .security-guide-link{display:inline-block;margin-top:18px;color:#00c8ff;text-decoration:underline;text-underline-offset:2px}
+    .security-slide-footer{position:absolute;left:56px;right:56px;bottom:20px;display:flex;align-items:center;justify-content:space-between}
+    .security-slide-status{color:rgba(255,255,255,.58);font-size:12px;font-weight:600;letter-spacing:.08em}
+    .security-slide-next{
+      display:grid;place-items:center;width:52px;height:42px;border:3px solid transparent;border-radius:999px;color:#fff;
+      background:linear-gradient(rgba(7,11,13,.78),rgba(7,11,13,.78)) padding-box,
+                 linear-gradient(90deg,var(--o),var(--p)) border-box;
+      font:700 24px/1 'Lexend',sans-serif;cursor:pointer;box-shadow:0 10px 24px rgba(0,0,0,.3);
+      transition:transform .2s ease,filter .2s ease;
+    }
+    .security-slide-next:hover{transform:translateX(3px);filter:brightness(1.1)}
+    .security-slide-next:focus-visible{outline:3px solid #fff;outline-offset:3px}
       .shot {
         -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
         mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -113,11 +200,17 @@
       .card{min-width:320px;max-width:480px}
       .shot img{width:100%}
       .corner-img{width:160px; top:15px; right:18px}
+      .security-carousel{padding:14px 10px}
+      .security-slide{height:min(500px,78vh);padding:30px 22px 82px}
+      .security-slide-footer{left:22px;right:22px}
     }
     @media (prefers-reduced-motion: reduce){
       .shot img{transition:none}
+      .security-track,.security-info-btn::before{transition:none}
     }
   </style>
+  <link rel="stylesheet" href="dr-theme.css" />
+  <script src="dr-theme.js"></script>
   <script>
     // Inactivity timeout: redirect to index.html after 10 minutes
     let inactivityTimer;
@@ -149,7 +242,7 @@
 </head>
 <body>
   <!-- Back button -->
-  <button class="back" aria-label="Go Back" onclick="smartBack('index.html')">←</button>
+  <a class="back" href="index.html" aria-label="Back to Digital Resilience" onclick="event.preventDefault(); smartBack('index.html')">←</a>
 
   <!-- Corner icon -->
   <a href="index.html" aria-label="Back to homepage"><img class="corner-img" src="Assets/secthumb2.png" alt="Security corner icon"></a>
@@ -163,27 +256,174 @@
   <section class="cols" aria-label="Security showcase">
       <article class="card">
         <h3>SOC of the Future</h3>
-        <a class="shot" href="https://splunk.github.io/DR-portal/security1.html" target="_self" tabindex="0" aria-label="Open SOC of the Future demo">
+        <a class="shot" href="security1.html" target="_self" tabindex="0" aria-label="Open SOC of the Future demo">
           <img src="Assets/socfuture.png" alt="SOC of the Future UI preview">
         </a>
+        <button class="security-info-btn" type="button" data-dialog="soc-services-dialog">
+          <span class="security-info-copy"><span class="security-info-eyebrow">CX Implementation Services</span><span class="security-info-headline"><strong>Accelerate</strong> deployment</span></span>
+          <svg class="security-info-icon" viewBox="0 0 64 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="10" r="6"/><path d="M20 38c0-8 5-13 12-13s12 5 12 13c-6 4-18 4-24 0Z"/><circle cx="13" cy="16" r="5"/><path d="M4 35c0-6 4-10 9-10 3 0 6 1 8 4M43 29c2-3 5-4 8-4 5 0 9 4 9 10"/><circle cx="51" cy="16" r="5"/></g></svg>
+        </button>
       </article>
 
       <article class="card">
         <h3>Cisco AI Defense</h3>
-        <a class="shot" href="https://splunk.github.io/DR-portal/security2.html" target="_self" tabindex="0" aria-label="Open Cisco AI Defense demo">
+        <a class="shot" href="security2.html" target="_self" tabindex="0" aria-label="Open Cisco AI Defense demo">
           <img src="Assets/supercharge.png" alt="Supercharge Security Operations UI preview">
         </a>
+        <button class="security-info-btn" type="button" data-dialog="ai-defense-services-dialog">
+          <span class="security-info-copy"><span class="security-info-eyebrow">CX Acceleration Services</span><span class="security-info-headline"><strong>Expand</strong> value</span></span>
+          <svg class="security-info-icon" viewBox="0 0 64 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="10" r="6"/><path d="M20 38c0-8 5-13 12-13s12 5 12 13c-6 4-18 4-24 0Z"/><circle cx="13" cy="16" r="5"/><path d="M4 35c0-6 4-10 9-10 3 0 6 1 8 4M43 29c2-3 5-4 8-4 5 0 9 4 9 10"/><circle cx="51" cy="16" r="5"/></g></svg>
+        </button>
       </article>
 
       <article class="card">
         <h3>Unify TDIR with Agentic SOC Platform</h3>
-        <a class="shot" href="https://splunk.github.io/DR-portal/security3.html" target="_self" tabindex="0" aria-label="Open Agentic SOC Platform demo">
+        <a class="shot" href="security3.html" target="_self" tabindex="0" aria-label="Open Agentic SOC Platform demo">
           <img src="Assets/TDIR.png" alt="Agentic SOC Platform UI preview">
         </a>
+        <button class="security-info-btn" type="button" data-dialog="tdir-services-dialog">
+          <span class="security-info-copy"><span class="security-info-eyebrow">CX AI Activation Services</span><span class="security-info-headline"><strong>Enable</strong> AI</span></span>
+          <svg class="security-info-icon" viewBox="0 0 64 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="10" r="6"/><path d="M20 38c0-8 5-13 12-13s12 5 12 13c-6 4-18 4-24 0Z"/><circle cx="13" cy="16" r="5"/><path d="M4 35c0-6 4-10 9-10 3 0 6 1 8 4M43 29c2-3 5-4 8-4 5 0 9 4 9 10"/><circle cx="51" cy="16" r="5"/></g></svg>
+        </button>
       </article>
     </section>
 
   </div>
+
+  <dialog class="security-dialog" id="soc-services-dialog" aria-label="Security implementation services">
+    <div class="security-dialog-panel"><div class="security-carousel"><div class="security-track">
+      <section class="security-slide">
+        <div class="security-copy">
+          <p><strong>Accelerate</strong> the implementation of Splunk Enterprise Security Editions leveraging the technical expertise and best practices of Splunk Professional Services.</p>
+          <h3 class="security-service-heading">Service Offerings</h3>
+          <ul><li><strong>Splunk ES Essentials Implementation</strong></li><li><strong>Splunk ES Premier Implementation</strong></li><li><strong>Cisco + Splunk Powered SIEM</strong></li></ul>
+        </div>
+        <div class="security-slide-footer"><span class="security-slide-status">1 / 4</span><button class="security-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="security-slide" aria-hidden="true">
+        <div class="security-copy">
+          <span class="security-slide-kicker">Splunk ES Essentials Implementation</span>
+          <p>Jump start your security operations with an <strong>expert-led implementation</strong> of the <strong>Splunk Enterprise Security Essentials</strong> platform. Quickly ramp up and accelerate your time-to-value while building digital resilience around core security use cases leveraging the knowledge and expertise of Splunk technical experts.</p>
+          <h3>Implementation includes:</h3>
+          <ul><li>Security Monitoring (SIEM)</li><li>Threat Intelligence Management (TIM)</li><li>Detection Studio</li><li>Exposure Analytics</li><li>Data Management &amp; Federation</li></ul>
+          <a class="security-guide-link" href="https://www.splunk.com/en_us/resources/splunk-es-essentials-implementation.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="security-slide-footer"><span class="security-slide-status">2 / 4</span><button class="security-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="security-slide" aria-hidden="true">
+        <div class="security-copy">
+          <span class="security-slide-kicker">Splunk ES Premier Implementation</span>
+          <p>Take security operations to the next level with an <strong>expert-led implementation</strong> of your <strong>unified TDIR platform</strong> (Threat Detection, Investigation, and Response) with <strong>Splunk Enterprise Security Premier.</strong></p>
+          <p>Accelerate the deployment, configuration, and integration of SIEM, SOAR, UEBA and agentic AI functionality to reduce the mean time to detect, investigate, and respond to the latest security threats.</p>
+          <h3>Implementation includes:</h3>
+          <ul><li>Security Monitoring (SIEM)</li><li>Threat Intelligence Management (TIM)</li><li>Detection Studio</li><li>Exposure Analytics</li><li><strong>User &amp; Entity Behavior Analytics (UEBA)</strong></li><li><strong>Automation &amp; Response (SOAR)</strong></li><li>Data Management &amp; Federation</li></ul>
+          <a class="security-guide-link" href="https://www.splunk.com/en_us/resources/splunk-es-premier-implementation.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="security-slide-footer"><span class="security-slide-status">3 / 4</span><button class="security-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="security-slide" aria-hidden="true">
+        <div class="security-copy">
+          <span class="security-slide-kicker">Cisco + Splunk Powered SIEM</span>
+          <p>Integrate Cisco security controls into your Splunk SIEM environment to <strong>better detect and respond to ransomware threats.</strong></p>
+          <p>The Cisco + Splunk Powered SIEM offering will deploy and tune a set of pre-packaged, high-fidelity detections with response plans and playbooks curated specifically for ransomware attacks.</p>
+          <p>Gain additional value from your investments in <strong>Splunk Enterprise Security</strong> and Cisco Security controls including:</p>
+          <ul><li><strong>Cisco Email Threat Defense</strong></li><li><strong>Cisco Secure Endpoint</strong></li><li><strong>Cisco Secure Firewall</strong></li><li>Cisco Identity Services Engine (ISE)</li><li>Cisco Secure Network Analytics</li><li>Cisco Umbrella (SASE)</li><li>Cisco Duo (MFA)</li><li>Cisco Talos Threat Intelligence</li></ul>
+          <a class="security-guide-link" href="https://www.splunk.com/en_us/resources/cisco-splunk-powered-siem-solution-guide.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="security-slide-footer"><span class="security-slide-status">4 / 4</span><button class="security-slide-next" type="button" aria-label="Return to first page">→</button></div>
+      </section>
+    </div></div></div>
+  </dialog>
+
+  <dialog class="security-dialog" id="ai-defense-services-dialog" aria-label="Security acceleration services">
+    <div class="security-dialog-panel"><div class="security-carousel"><div class="security-track">
+      <section class="security-slide">
+        <div class="security-copy">
+          <p><strong>Expand</strong> the value of Splunk Enterprise Security Editions by activating new security use cases using the technical expertise and best practices of Splunk Professional Services.</p>
+          <h3 class="security-service-heading">Accelerators</h3>
+          <ul><li><strong>Alert Fidelity (RBA)</strong></li><li><strong>Advanced RBA</strong></li><li><strong>Asset &amp; Identity</strong></li><li><strong>Insider Threats</strong></li><li><strong>Detection Engineering</strong></li><li><strong>Use Case Development</strong></li></ul>
+        </div>
+        <div class="security-slide-footer"><span class="security-slide-status">1 / 7</span><button class="security-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="security-slide" aria-hidden="true">
+        <div class="security-copy">
+          <span class="security-slide-kicker">Alert Fidelity (RBA)</span>
+          <p>Generate high-fidelity alerts using our <strong>risk-based alerting (RBA) methodology</strong> to reduce noise and minimize alert fatigue for your security operations team. Aggregate security events into a risk index and trigger high-value alerts when risk scores exceed your acceptable levels of risk.</p>
+          <p><strong>Increase analyst productivity and efficiency</strong> by focusing on meaningful alerts rather than noise, enabling better detection of real threats and shifting SOC resources from reactive alert handling to proactive threat hunting, adversary simulation, and threat intelligence.</p>
+          <a class="security-guide-link" href="https://www.splunk.com/en_us/resources/splunk-observability-implementation-success.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="security-slide-footer"><span class="security-slide-status">2 / 7</span><button class="security-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="security-slide" aria-hidden="true">
+        <div class="security-copy">
+          <span class="security-slide-kicker">Advanced RBA</span>
+          <p>The <strong>Advanced RBA</strong> accelerator is designed to help you <strong>continue your Risk-Based Alerting journey</strong> and enhance your level of RBA maturity with improved workflows, detection filtering and tuning, integration of threat intel feeds, integration of other types of risk objects and vulnerability data, and usage of asset and identity data.</p>
+          <p>The offering includes advanced RBA configuration services for custom risk rules and notables.</p>
+          <a class="security-guide-link" href="https://www.splunk.com/en_us/resources/advanced-rba-accelerator-solution-guide.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="security-slide-footer"><span class="security-slide-status">3 / 7</span><button class="security-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="security-slide" aria-hidden="true">
+        <div class="security-copy">
+          <span class="security-slide-kicker">Asset &amp; Identity</span>
+          <p>The <strong>Asset &amp; Identity Workshop</strong> and Implementation offering delivers a structured workshop to understand your requirements and confirm the technical readiness of your environment in preparation for the implementation of the <strong>Splunk Asset and Risk Intelligence (ARI)</strong> application.</p>
+          <p>The key objective of the Asset and Identity Workshop and Implementation offering is to have a configured ES Assets &amp; Identities framework based on the requirements gathered from the workshop and the Splunk Professional Services’ Consultant recommendations.</p>
+          <a class="security-guide-link" href="https://www.splunk.com/en_us/resources/asset-and-identity-workshop-and-implementation.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="security-slide-footer"><span class="security-slide-status">4 / 7</span><button class="security-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="security-slide" aria-hidden="true">
+        <div class="security-copy">
+          <span class="security-slide-kicker">Insider Threats</span>
+          <p>The <strong>Insider Threat Workshop</strong> is a short-term engagement designed to create a plan with recommendations to proactively monitor and detect insider threats using the MITRE ATT&amp;CK Insider Threat TTP knowledge base.</p>
+          <p>The offering is focused on recommended insider threat use cases within Splunk Enterprise Security and how to <strong>enhance these use cases with Risk-Based Alerting (RBA).</strong></p>
+          <p>The key objective of the Insider Threat Workshop is to help you detect, mitigate and emulate insider threat actions on your IT systems and stop them.</p>
+          <a class="security-guide-link" href="https://www.splunk.com/en_us/resources/insider-threat-workshop.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="security-slide-footer"><span class="security-slide-status">5 / 7</span><button class="security-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="security-slide" aria-hidden="true">
+        <div class="security-copy">
+          <span class="security-slide-kicker">Detection Engineering</span>
+          <p><strong>Achieve detection engineering excellence</strong> and transform your SOC from a reactive alert monitoring center to a proactive, engineering-driven defense organization that delivers timely and precise threat detections to keep your business resilient against evolving cyber threats.</p>
+          <p>The <strong>Detection Engineering Excellence</strong> service helps you establish and mature a seamless, integrated detection lifecycle process to plan, develop, test, deploy, and monitor detections leveraging the capabilities of the unified Splunk Enterprise Security platform.</p>
+        </div>
+        <div class="security-slide-footer"><span class="security-slide-status">6 / 7</span><button class="security-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="security-slide" aria-hidden="true">
+        <div class="security-copy">
+          <span class="security-slide-kicker">Use Case Development</span>
+          <p>The <strong>Security Use Case Development Workshop</strong> is a short-term engagement that helps you increase the effectiveness of your security monitoring capabilities by identifying new use cases that will improve your security posture and refine your monitoring strategy to better align with your business priorities.</p>
+          <p>Our experts aid in identifying data sources and customizing the security queries (use cases) that maximize the opportunities to improve your security detections, aligned with your enterprise needs and risk priorities.</p>
+          <a class="security-guide-link" href="https://www.splunk.com/en_us/resources/security-use-case-development-workshop.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="security-slide-footer"><span class="security-slide-status">7 / 7</span><button class="security-slide-next" type="button" aria-label="Return to first page">→</button></div>
+      </section>
+    </div></div></div>
+  </dialog>
+
+  <dialog class="security-dialog" id="tdir-services-dialog" aria-label="AI Activation Services for Security">
+    <div class="security-dialog-panel"><div class="security-carousel"><div class="security-track">
+      <section class="security-slide">
+        <div class="security-copy">
+          <p><strong>Enable</strong> AI capabilities and agents to drive efficiency across your security operations using the technical expertise and best practices of Splunk Professional Services.</p>
+          <h3 class="security-service-heading">AI Activation</h3>
+          <ul><li><strong>AI Activation Services for Security</strong></li></ul>
+        </div>
+        <div class="security-slide-footer"><span class="security-slide-status">1 / 2</span><button class="security-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="security-slide" aria-hidden="true">
+        <div class="security-copy">
+          <span class="security-slide-kicker">AI Activation Services for Security</span>
+          <p>AI Activation Services for Security are designed to help customers <strong>operationalize Splunk AI and machine learning capabilities</strong> to help security teams reduce the time it takes to detect true positives and resolve security incidents.</p>
+          <p>The services aim to <strong>operationalize a core set of security use cases</strong> that are enriched by AI and machine learning and tailored to your specific needs:</p>
+          <ul><li>Identify user access anomalies</li><li>Spot potential insider threats</li><li>Detect domain generation algorithms</li><li>Find command line anomalies</li><li>Use Machine Learning (ML) for threat hunting</li><li>Detect malicious patterns of network traffic</li><li>Predict data downtime</li><li>Demystify security searches with the Splunk AI assistant</li></ul>
+          <a class="security-guide-link" href="https://www.splunk.com/en_us/resources/ai-ml-activation-services-for-security-solution-guide.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="security-slide-footer"><span class="security-slide-status">2 / 2</span><button class="security-slide-next" type="button" aria-label="Return to first page">→</button></div>
+      </section>
+    </div></div></div>
+  </dialog>
 
   <script>
     // Touch/keyboard feedback
@@ -197,6 +437,42 @@
       };
       el.addEventListener('touchstart', flash, {passive:true});
       el.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); flash(); }});
+    });
+
+    document.querySelectorAll('.security-dialog').forEach(dialog => {
+      const track = dialog.querySelector('.security-track');
+      const slides = [...dialog.querySelectorAll('.security-slide')];
+      let page = 0;
+
+      const showPage = nextPage => {
+        page = (nextPage + slides.length) % slides.length;
+        track.style.transform = `translateX(-${page * 100}%)`;
+        slides.forEach((slide, index) => slide.setAttribute('aria-hidden', index === page ? 'false' : 'true'));
+      };
+
+      dialog.querySelectorAll('.security-slide-next').forEach(button => {
+        button.addEventListener('click', () => showPage(page + 1));
+      });
+      dialog.addEventListener('click', event => {
+        if (event.target === dialog) dialog.close();
+      });
+      dialog.addEventListener('close', () => {
+        document.body.classList.remove('modal-open');
+        showPage(0);
+      });
+      dialog.addEventListener('keydown', event => {
+        if (event.key === 'ArrowRight') showPage(page + 1);
+        if (event.key === 'ArrowLeft') showPage(page - 1);
+      });
+    });
+
+    document.querySelectorAll('.security-info-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const dialog = document.getElementById(button.dataset.dialog);
+        if (!dialog) return;
+        document.body.classList.add('modal-open');
+        dialog.showModal();
+      });
     });
   </script>
 </body>

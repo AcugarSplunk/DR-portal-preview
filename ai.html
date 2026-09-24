@@ -142,6 +142,72 @@
       -webkit-mask-composite:xor;mask-composite:exclude;opacity:.9;pointer-events:none;
     }
 
+    /* CX AI Activation callout */
+    .ai-services-row{display:flex;justify-content:center;padding-bottom:88px}
+    .ai-info-btn{
+      display:block;width:min(385px,90%);margin:26px auto 8px;padding:17px 20px;
+      border:2px solid transparent;border-radius:7px;text-align:center;color:#fff;cursor:pointer;
+      background:linear-gradient(#000,#000) padding-box,
+                 linear-gradient(180deg,var(--p) 0%,var(--p) 20%,var(--o) 100%) border-box;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 14px 30px rgba(0,0,0,.34);
+      backdrop-filter:none;-webkit-backdrop-filter:none;font-family:Inter,'Lexend',system-ui,sans-serif;
+      position:relative;top:80px;overflow:hidden;isolation:isolate;
+      transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;
+    }
+    .ai-info-btn::before{
+      content:"";position:absolute;inset:-70% -35%;z-index:0;pointer-events:none;
+      background:linear-gradient(110deg,transparent 36%,rgba(255,255,255,.22) 49%,transparent 62%);
+      transform:translateX(-65%) rotate(4deg);transition:transform .55s ease;
+    }
+    .ai-info-btn:hover{transform:translateY(-2px);filter:brightness(1.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 18px 36px rgba(0,0,0,.4)}
+    .ai-info-btn:hover::before,.ai-info-btn:focus-visible::before{transform:translateX(65%) rotate(4deg)}
+    .ai-info-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+    .ai-info-copy{position:relative;z-index:1;display:block}
+    .ai-info-eyebrow{display:block;margin-bottom:5px;font-size:12px;font-weight:400;line-height:1.1}
+    .ai-info-headline{display:block;font-size:20px;font-weight:700;line-height:1.1;letter-spacing:-.015em}
+    .ai-info-headline strong{color:var(--o)}
+
+    body.modal-open{overflow:hidden}
+    dialog.ai-services-dialog{
+      position:fixed;inset:0;margin:auto;width:min(900px,94vw);max-height:92vh;padding:0 !important;border:0 !important;border-radius:20px !important;
+      color:#f7f9ff;background:rgba(10,18,23,.04) !important;overflow:hidden;
+      box-shadow:0 28px 90px rgba(0,0,0,.72) !important;
+      backdrop-filter:blur(26px) saturate(155%);-webkit-backdrop-filter:blur(26px) saturate(155%);
+    }
+    dialog.ai-services-dialog::backdrop{background:rgba(0,0,0,.58);backdrop-filter:blur(4px)}
+    .ai-dialog-panel{
+      position:relative;padding:0;background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.025) 34%,rgba(21,29,33,.46) 78%);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.2),inset 0 0 0 1px rgba(255,255,255,.055);
+    }
+    .ai-carousel{width:min(820px,100%);max-height:84vh;overflow:hidden;margin:0 auto;padding:32px 28px 22px;color:#f4f6f8}
+    .ai-track{display:flex;width:100%;transition:transform .5s cubic-bezier(.2,.75,.2,1)}
+    .ai-slide{
+      position:relative;flex:0 0 100%;min-width:100%;height:min(520px,76vh);overflow:auto;
+      padding:48px 56px 88px;text-align:left;background:none;border:0;box-shadow:none;
+      font:500 clamp(13px,1vw,15px)/1.4 'Lexend',system-ui,sans-serif;
+    }
+    .ai-slide h3{margin:0 0 18px;font-size:clamp(22px,2vw,30px);line-height:1.15}
+    .ai-slide p{margin:0;color:rgba(255,255,255,.72)}
+    .ai-copy p{margin:0 0 16px;color:#f4f6f8}
+    .ai-copy strong{font-weight:750}
+    .ai-slide-kicker{display:block;margin-bottom:9px;color:rgba(255,255,255,.58);font-size:12px;font-weight:500;letter-spacing:.03em;text-transform:uppercase}
+    .ai-copy h3{margin:20px 0 10px;font-size:17px;line-height:1.25}
+    .ai-copy ul{margin:0;padding-left:1.35em}
+    .ai-copy li{margin:0 0 8px;padding-left:6px;line-height:1.3}
+    .ai-service-heading{padding-top:16px;border-top:1px solid var(--p);color:var(--p);font-size:17px !important}
+    .ai-guide-link{display:inline-block;margin-top:18px;color:#00c8ff;text-decoration:underline;text-underline-offset:2px}
+    .ai-slide-footer{position:absolute;left:56px;right:56px;bottom:20px;display:flex;align-items:center;justify-content:space-between}
+    .ai-slide-status{color:rgba(255,255,255,.58);font-size:12px;font-weight:600;letter-spacing:.08em}
+    .ai-slide-next{
+      display:grid;place-items:center;width:52px;height:42px;border:3px solid transparent;border-radius:999px;color:#fff;
+      background:linear-gradient(rgba(7,11,13,.78),rgba(7,11,13,.78)) padding-box,
+                 linear-gradient(90deg,var(--o),var(--p)) border-box;
+      font:700 24px/1 'Lexend',sans-serif;cursor:pointer;box-shadow:0 10px 24px rgba(0,0,0,.3);
+      transition:transform .2s ease,filter .2s ease;
+    }
+    .ai-slide-next:hover{transform:translateX(3px);filter:brightness(1.1)}
+    .ai-slide-next:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
     /* === Buttons === */
 
     /* Fixed back button (top-left, arrow only) */
@@ -198,8 +264,14 @@
     @media (max-width:720px){
       .wrap{padding:24px}
       .corner-img{width:160px; top:15px; right:18px}
+      .ai-carousel{padding:14px 10px}
+      .ai-slide{height:min(500px,78vh);padding:30px 22px 82px}
+      .ai-slide-footer{left:22px;right:22px}
     }
+    @media (prefers-reduced-motion:reduce){.ai-track,.ai-info-btn::before{transition:none}}
   </style>
+  <link rel="stylesheet" href="dr-theme.css" />
+  <script src="dr-theme.js"></script>
   <script>
     // Inactivity timeout: redirect to index.html after 10 minutes
     let inactivityTimer;
@@ -232,7 +304,7 @@
 <body>
 
   <!-- Back button -->
-  <button class="back" aria-label="Go Back" onclick="smartBack('index.html')">←</button>
+  <a class="back" href="index.html" aria-label="Back to Digital Resilience" onclick="event.preventDefault(); smartBack('index.html')">←</a>
 
   <!-- Section-specific corner icon -->
   <a href="index.html" aria-label="Back to homepage"><img class="corner-img" src="Assets/AIthumb2.png" alt="Corner icon"></a>
@@ -243,7 +315,7 @@
     <h1>Splunk Platform Powered by <span class="grad">AI&nbsp;services&nbsp;+&nbsp;data</span></h1>
 	    <h2>Turn every insight into intelligent action.</h2>
 
-    <a href="https://splunk.github.io/DR-portal/AIassistants.html" class="header-card">AI Assistants</a>
+    <a href="AIassistants.html" class="header-card">AI Assistants</a>
 
   <!-- AI lifecycle navigation -->
   <section class="quad-card" aria-label="Lifecycle">
@@ -268,24 +340,94 @@
 
   <!-- Navigation cards for AI demos -->
   <section class="blocks" aria-label="AI building blocks">
-      <a href="https://splunk.github.io/DR-portal/ai1.html" class="block">
+      <a href="ai1.html" class="block">
         <img src="Assets/icon_machine-learning_color-w.png" alt="Machine Learning Icon">
         Machine learning
       </a>
-      <a href="https://splunk.github.io/DR-portal/ai2.html" class="block">
+      <a href="ai2.html" class="block">
         <img src="Assets/icon_deep-learning_color-w.png" alt="Deep Learning Icon">
         Deep learning
       </a>
-      <a href="https://splunk.github.io/DR-portal/ai3.html" class="block">
+      <a href="ai3.html" class="block">
     <img src="Assets/icon_generative-ai_color-w.svg" alt="Splunk MCP Icon">
         Splunk MCP
       </a>
-      <a href="https://splunk.github.io/DR-portal/ai4.html" class="block">
+      <a href="ai4.html" class="block">
         <img src="Assets/icon_splunk-ai_color-w.png" alt="AI Canvas Icon">
         AI Canvas
       </a>
     </section>
 
+    <div class="ai-services-row">
+      <button class="ai-info-btn" id="ai-services-button" type="button" aria-haspopup="dialog" aria-controls="ai-services-dialog">
+        <span class="ai-info-copy"><span class="ai-info-eyebrow">CX AI Activation Services</span><span class="ai-info-headline"><strong>Enable</strong> AI</span></span>
+      </button>
+    </div>
+
  </div>
+
+  <dialog class="ai-services-dialog" id="ai-services-dialog" aria-label="CX AI Activation Services">
+    <div class="ai-dialog-panel"><div class="ai-carousel"><div class="ai-track">
+      <section class="ai-slide">
+        <div class="ai-copy">
+          <p><strong>Enable</strong> AI capabilities and agents to drive efficiency across your security and observability operations using the technical expertise and best practices of Splunk Professional Services.</p>
+          <h3 class="ai-service-heading">AI Activation</h3>
+          <ul><li><strong>AI Activation Services for Security</strong></li><li><strong>Splunk Agent Observability (FDE)</strong></li></ul>
+        </div>
+        <div class="ai-slide-footer"><span class="ai-slide-status">1 / 3</span><button class="ai-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="ai-slide" aria-hidden="true">
+        <div class="ai-copy">
+          <span class="ai-slide-kicker">AI Activation Services for Security</span>
+          <p>AI Activation Services for Security are designed to help customers <strong>operationalize Splunk AI and machine learning capabilities</strong> to help security teams reduce the time it takes to detect true positives and resolve security incidents.</p>
+          <p>The services aim to <strong>operationalize a core set of security use cases</strong> that are enriched by AI and machine learning and tailored to your specific needs:</p>
+          <ul><li>Identify user access anomalies</li><li>Spot potential insider threats</li><li>Detect domain generation algorithms</li><li>Find command line anomalies</li><li>Use Machine Learning (ML) for threat hunting</li><li>Detect malicious patterns of network traffic</li><li>Predict data downtime</li><li>Demystify security searches with the Splunk AI assistant</li></ul>
+          <a class="ai-guide-link" href="https://www.splunk.com/en_us/resources/ai-ml-activation-services-for-security-solution-guide.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="ai-slide-footer"><span class="ai-slide-status">2 / 3</span><button class="ai-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="ai-slide" aria-hidden="true">
+        <div class="ai-copy">
+          <span class="ai-slide-kicker">Splunk Agent Observability (FDE)</span>
+          <p>Understanding the behavior and performance of AI Agents is critical to the success of your AI program.</p>
+          <p>A Splunk <strong>Forward Deployed Engineer (FDE)</strong> is an AI technical expert embedded with your team to help solve complex implementation challenges, accelerate time-to-value, and ensure successful adoption of your <strong>Splunk Agent Observability</strong> solution. Our experts will help you build custom integrations, implement observability metrics, set up evaluation pipelines and create custom guardrails for your AI agents tailored to your business and compliance needs.</p>
+        </div>
+        <div class="ai-slide-footer"><span class="ai-slide-status">3 / 3</span><button class="ai-slide-next" type="button" aria-label="Return to first page">→</button></div>
+      </section>
+    </div></div></div>
+  </dialog>
+
+  <script>
+    const aiServicesButton = document.getElementById('ai-services-button');
+    const aiServicesDialog = document.getElementById('ai-services-dialog');
+    const aiTrack = aiServicesDialog.querySelector('.ai-track');
+    const aiSlides = [...aiServicesDialog.querySelectorAll('.ai-slide')];
+    let aiPage = 0;
+
+    function showAiPage(nextPage) {
+      aiPage = (nextPage + aiSlides.length) % aiSlides.length;
+      aiTrack.style.transform = `translateX(-${aiPage * 100}%)`;
+      aiSlides.forEach((slide, index) => slide.setAttribute('aria-hidden', index === aiPage ? 'false' : 'true'));
+    }
+
+    aiServicesButton.addEventListener('click', () => {
+      document.body.classList.add('modal-open');
+      aiServicesDialog.showModal();
+    });
+    aiServicesDialog.querySelectorAll('.ai-slide-next').forEach(button => {
+      button.addEventListener('click', () => showAiPage(aiPage + 1));
+    });
+    aiServicesDialog.addEventListener('click', event => {
+      if (event.target === aiServicesDialog) aiServicesDialog.close();
+    });
+    aiServicesDialog.addEventListener('close', () => {
+      document.body.classList.remove('modal-open');
+      showAiPage(0);
+    });
+    aiServicesDialog.addEventListener('keydown', event => {
+      if (event.key === 'ArrowRight') showAiPage(aiPage + 1);
+      if (event.key === 'ArrowLeft') showAiPage(aiPage - 1);
+    });
+  </script>
 </body>
 </html>

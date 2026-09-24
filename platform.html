@@ -38,15 +38,92 @@
     .cols{display:flex; justify-content:space-between; gap:80px; align-items:flex-start; flex-wrap:wrap}
 
     .card{flex:1; min-width:320px; max-width:480px; display:flex; flex-direction:column; align-items:center; text-align:center}
-    .card h3{margin:0 0 20px; font-size:22px; font-weight:800; letter-spacing:.2px; line-height:1.3; text-align:center}
+    html[data-brand] body .cols .card{
+      padding:0 !important;border:0 !important;border-radius:0 !important;background:none !important;
+      box-shadow:none !important;filter:none !important;backdrop-filter:none !important;
+      -webkit-backdrop-filter:none !important;align-self:stretch;
+    }
+    html[data-brand] body .cols .card::before,
+    html[data-brand] body .cols .card::after{display:none !important}
+    html[data-brand] body .cols .card:hover,
+    html[data-brand] body .cols .card:focus-within{
+      border-color:transparent !important;background:none !important;box-shadow:none !important;
+      filter:none !important;transform:none !important;
+    }
+    .card h3{display:flex;align-items:flex-end;justify-content:center;min-height:58px;margin:0 0 20px;font-size:22px;font-weight:800;letter-spacing:.2px;line-height:1.3;text-align:center}
 
     /* Interactive PNG wrapper */
-    .shot{display:inline-block; border-radius:14px; overflow:visible; outline:none; background:none; box-shadow:none}
+    .shot{display:flex;align-items:center;justify-content:center;min-height:220px;border-radius:14px;overflow:visible;outline:none;background:none;box-shadow:none}
     .shot img{width:100%; height:auto; display:block; border-radius:14px; transition:transform .35s ease, filter .35s ease; margin:0 auto}
     .shot:hover img, .shot:focus-visible img, .shot.touched img{
       transform:translateY(-2px);
       filter: drop-shadow(0 0 2px var(--o)) drop-shadow(0 0 3px var(--p)) drop-shadow(0 0 4px var(--v));
     }
+
+    .platform-services-row{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;padding-bottom:88px}
+    .platform-info-btn{
+      display:block;width:min(385px,90vw);margin:26px 0 8px;padding:17px 20px;
+      border:2px solid transparent;border-radius:7px;text-align:center;color:#fff;cursor:pointer;
+      background:linear-gradient(#000,#000) padding-box,
+                 linear-gradient(180deg,var(--p) 0%,var(--p) 20%,var(--o) 100%) border-box;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 14px 30px rgba(0,0,0,.34);
+      backdrop-filter:none;-webkit-backdrop-filter:none;font-family:Inter,'Lexend',system-ui,sans-serif;
+      position:relative;top:80px;overflow:hidden;isolation:isolate;
+      transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;
+    }
+    .platform-info-btn::before{
+      content:"";position:absolute;inset:-70% -35%;z-index:0;pointer-events:none;
+      background:linear-gradient(110deg,transparent 36%,rgba(255,255,255,.22) 49%,transparent 62%);
+      transform:translateX(-65%) rotate(4deg);transition:transform .55s ease;
+    }
+    .platform-info-btn:hover{transform:translateY(-2px);filter:brightness(1.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 18px 36px rgba(0,0,0,.4)}
+    .platform-info-btn:hover::before,.platform-info-btn:focus-visible::before{transform:translateX(65%) rotate(4deg)}
+    .platform-info-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+    .platform-info-copy{position:relative;z-index:1;display:block}
+    .platform-info-eyebrow{display:block;margin-bottom:5px;font-size:12px;font-weight:400;line-height:1.1}
+    .platform-info-headline{display:block;font-size:20px;font-weight:700;line-height:1.1;letter-spacing:-.015em}
+    .platform-info-headline strong{color:var(--o)}
+
+    body.modal-open{overflow:hidden}
+    dialog.platform-dialog{
+      position:fixed;inset:0;margin:auto;width:min(900px,94vw);max-height:92vh;padding:0 !important;
+      border:0 !important;border-radius:20px !important;color:#f7f9ff;background:rgba(10,18,23,.04) !important;
+      overflow:hidden;box-shadow:0 28px 90px rgba(0,0,0,.72) !important;
+      backdrop-filter:blur(26px) saturate(155%);-webkit-backdrop-filter:blur(26px) saturate(155%);
+    }
+    dialog.platform-dialog::backdrop{background:rgba(0,0,0,.58);backdrop-filter:blur(4px)}
+    .platform-dialog-panel{
+      position:relative;padding:0;background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.025) 34%,rgba(21,29,33,.46) 78%);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.2),inset 0 0 0 1px rgba(255,255,255,.055);
+    }
+    .platform-carousel{width:min(820px,100%);max-height:84vh;overflow:hidden;margin:0 auto;padding:32px 28px 22px;color:#f4f6f8}
+    .platform-track{display:flex;width:100%;transition:transform .5s cubic-bezier(.2,.75,.2,1)}
+    .platform-slide{
+      position:relative;flex:0 0 100%;min-width:100%;height:min(520px,76vh);overflow:auto;
+      padding:48px 56px 88px;text-align:left;background:none;border:0;box-shadow:none;
+      font:500 clamp(13px,1vw,15px)/1.4 'Lexend',system-ui,sans-serif;
+    }
+    .platform-slide h2{margin:0 0 18px;font-size:clamp(22px,2vw,30px);line-height:1.15}
+    .platform-slide p{margin:0;color:rgba(255,255,255,.72)}
+    .platform-copy p{margin:0 0 16px;color:#f4f6f8}
+    .platform-copy strong{font-weight:750}
+    .platform-slide-kicker{display:block;margin-bottom:9px;color:rgba(255,255,255,.58);font-size:12px;font-weight:500;letter-spacing:.03em;text-transform:uppercase}
+    .platform-copy h3{margin:20px 0 10px;font-size:17px;line-height:1.25}
+    .platform-copy ul{margin:0;padding-left:1.35em}
+    .platform-copy li{margin:0 0 8px;padding-left:6px;line-height:1.3}
+    .platform-service-heading{padding-top:16px;border-top:1px solid var(--p);color:var(--p);font-size:17px !important}
+    .platform-guide-link{display:inline-block;margin-top:18px;color:#00c8ff;text-decoration:underline;text-underline-offset:2px}
+    .platform-slide-footer{position:absolute;left:56px;right:56px;bottom:20px;display:flex;align-items:center;justify-content:space-between}
+    .platform-slide-status{color:rgba(255,255,255,.58);font-size:12px;font-weight:600;letter-spacing:.08em}
+    .platform-slide-next{
+      display:grid;place-items:center;width:52px;height:42px;border:3px solid transparent;border-radius:999px;color:#fff;
+      background:linear-gradient(rgba(7,11,13,.78),rgba(7,11,13,.78)) padding-box,
+                 linear-gradient(90deg,var(--o),var(--p)) border-box;
+      font:700 24px/1 'Lexend',sans-serif;cursor:pointer;box-shadow:0 10px 24px rgba(0,0,0,.3);
+      transition:transform .2s ease,filter .2s ease;
+    }
+    .platform-slide-next:hover{transform:translateX(3px);filter:brightness(1.1)}
+    .platform-slide-next:focus-visible{outline:3px solid #fff;outline-offset:3px}
 
     /* Fixed back button (top-left, arrow only) */
     .back{
@@ -98,12 +175,19 @@
       body{padding:24px}
       .cols{flex-direction:column; align-items:center; gap:40px}
       .shot img{width:100%}
-  .corner-img{width:160px; top:15px; right:18px}
+      .corner-img{width:160px; top:15px; right:18px}
+      .platform-services-row{gap:10px}
+      .platform-carousel{padding:14px 10px}
+      .platform-slide{height:min(500px,78vh);padding:30px 22px 82px}
+      .platform-slide-footer{left:22px;right:22px}
     }
     @media (prefers-reduced-motion: reduce){
       .shot img{transition:none}
+      .platform-track,.platform-info-btn::before{transition:none}
     }
   </style>
+  <link rel="stylesheet" href="dr-theme.css" />
+  <script src="dr-theme.js"></script>
   <script>
     // Inactivity timeout: redirect to index.html after 10 minutes
     let inactivityTimer;
@@ -135,7 +219,7 @@
 </head>
 <body>
   <!-- Back button -->
-  <button class="back" aria-label="Go Back" onclick="smartBack('index.html')">←</button>
+  <a class="back" href="index.html" aria-label="Back to Digital Resilience" onclick="event.preventDefault(); smartBack('index.html')">←</a>
 
   <!-- Corner icon -->
   <a href="index.html" aria-label="Back to homepage"><img class="corner-img" src="Assets/platthumb2.png" alt="Platform corner icon"></a>
@@ -151,28 +235,126 @@
     <section class="cols" aria-label="Platform showcase">
       <article class="card">
         <h3>Ingest &amp; Data Pipelines <br>(Edge Processor)</h3>
-        <a class="shot" href="https://splunk.github.io/DR-portal/platform1.html" target="_self" tabindex="0" aria-label="Open Edge Processor & Data Pipelines demo">
+        <a class="shot" href="platform1.html" target="_self" tabindex="0" aria-label="Open Edge Processor & Data Pipelines demo">
           <img src="Assets/Edge.png" alt="Edge Processor & Data Pipelines preview">
         </a>
       </article>
 
       <article class="card">
         <h3>Search, Indexing <br>&amp; Federated Access</h3>
-        <a class="shot" href="https://splunk.github.io/DR-portal/platform2.html" target="_self" tabindex="0" aria-label="Open Search, Indexing & Federated Access demo">
+        <a class="shot" href="platform2.html" target="_self" tabindex="0" aria-label="Open Search, Indexing & Federated Access demo">
           <img src="Assets/federated.png" alt="Search, Indexing & Federated Access preview">
         </a>
       </article>
 
       <article class="card">
         <h3>Admin, Scale <br>&amp; Upgrade Readiness</h3>
-        <a class="shot" href="https://splunk.github.io/DR-portal/platform3.html" target="_self" tabindex="0" aria-label="Open Admin, Scale & Upgrade Readiness demo">
+        <a class="shot" href="platform3.html" target="_self" tabindex="0" aria-label="Open Admin, Scale & Upgrade Readiness demo">
           <img src="Assets/compass.png" alt="Admin, Scale & Upgrade Readiness preview">
         </a>
       </article>
     </section>
 
+    <div class="platform-services-row">
+      <button class="platform-info-btn" type="button" data-dialog="platform-implementation-dialog">
+        <span class="platform-info-copy"><span class="platform-info-eyebrow">CX Implementation Services</span><span class="platform-info-headline"><strong>Accelerate</strong> deployment</span></span>
+      </button>
+      <button class="platform-info-btn" type="button" data-dialog="platform-acceleration-dialog">
+        <span class="platform-info-copy"><span class="platform-info-eyebrow">CX Acceleration Services</span><span class="platform-info-headline"><strong>Expand</strong> value</span></span>
+      </button>
+    </div>
  
   </div>
+
+  <dialog class="platform-dialog" id="platform-implementation-dialog" aria-label="Platform implementation services">
+    <div class="platform-dialog-panel"><div class="platform-carousel"><div class="platform-track">
+      <section class="platform-slide">
+        <div class="platform-copy">
+          <p><strong>Accelerate</strong> the implementation of Splunk Enterprise leveraging the technical expertise and best practices of Splunk Professional Services.</p>
+          <h3 class="platform-service-heading">Service Offerings</h3>
+          <ul><li><strong>Splunk Cloud Implementation</strong></li><li><strong>Splunk Enterprise Implementation</strong></li><li><strong>Splunk Enterprise Upgrade</strong></li><li><strong>Splunk Cloud Migration</strong></li><li><strong>Splunk POD on Cisco Hardware</strong></li></ul>
+        </div>
+        <div class="platform-slide-footer"><span class="platform-slide-status">1 / 6</span><button class="platform-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="platform-slide" aria-hidden="true">
+        <div class="platform-copy">
+          <span class="platform-slide-kicker">Splunk Cloud Implementation</span>
+          <p>The <strong>Splunk Cloud Implementation</strong> offering is designed to accelerate the deployment of the highly scalable Splunk Cloud Platform using Splunk best practices to achieve your desired business outcomes.</p>
+          <p>We provide guidance and expertise to deploy the platform, ingest your data, and configure the search and visualization capabilities based on your business use cases. A Splunk Cloud Implementation is ideal for new Splunk customers who are looking to minimize administration overhead by leveraging a Splunk Cloud instance.</p>
+          <a class="platform-guide-link" href="https://www.splunk.com/en_us/resources/splunk-cloud-implementation-success-solution-guide.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="platform-slide-footer"><span class="platform-slide-status">2 / 6</span><button class="platform-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="platform-slide" aria-hidden="true">
+        <div class="platform-copy">
+          <span class="platform-slide-kicker">Splunk Enterprise Implementation</span>
+          <p>The <strong>Splunk Enterprise Implementation</strong> offering helps IT teams accelerate the delivery of a fully operational Splunk Enterprise platform on-premises and optimized to ingest the right data needed to monitor business and IT operations to improve performance.</p>
+          <p>Splunk's deep technical expertise and implementation best practices help de-risk your implementation project and deliver the business results that maximize the return on your Splunk investment.</p>
+          <a class="platform-guide-link" href="https://www.splunk.com/en_us/resources/splunk-enterprise-implementation-success.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="platform-slide-footer"><span class="platform-slide-status">3 / 6</span><button class="platform-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="platform-slide" aria-hidden="true">
+        <div class="platform-copy">
+          <span class="platform-slide-kicker">Splunk Enterprise Upgrade</span>
+          <p>The <strong>Splunk Enterprise Upgrade</strong> offering helps IT teams successfully navigate the best and safest upgrade path to the latest software version while minimizing the risk of any disruption to business operations.</p>
+          <p>Splunk's technical experts will assess your current environment and make sure that your upgrade path aligns with our best practices to improve the performance, security and functionality of your Splunk Enterprise platform.</p>
+          <a class="platform-guide-link" href="https://www.splunk.com/en_us/resources/platform-enterprise-upgrade.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="platform-slide-footer"><span class="platform-slide-status">4 / 6</span><button class="platform-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="platform-slide" aria-hidden="true">
+        <div class="platform-copy">
+          <span class="platform-slide-kicker">Splunk Cloud Migration</span>
+          <p>The <strong>Splunk Cloud Migration</strong> offering takes a holistic review of your Splunk architecture and Splunk deployment best practices to determine the migration path to the Splunk Cloud Platform.</p>
+          <p>We provide guidance and expertise to not only migrate your deployment, but also to optimize your environment for Splunk Cloud.</p>
+          <p>A Splunk Cloud Migration is designed for Splunk customers who are looking to minimize downtime and minimize the time it takes to migrate their on-premises environment to Splunk Cloud. Additionally, this migration is targeted to customers who need to preserve their Splunk historical data in the original format, want to implement a Splunk deployment with best practices, and have already onboarded data and custom-built applications.</p>
+          <a class="platform-guide-link" href="https://www.splunk.com/en_us/resources/splunk-cloud-migration-services-solution-guide.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="platform-slide-footer"><span class="platform-slide-status">5 / 6</span><button class="platform-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="platform-slide" aria-hidden="true">
+        <div class="platform-copy">
+          <span class="platform-slide-kicker">Splunk POD on Cisco Hardware</span>
+          <p><strong>Splunk POD (Platform on Demand)</strong> is a standardized, semi-automated deployment solution that integrates Splunk Enterprise software on Cisco UCS hardware. This solution aims to simplify the deployment and management of Splunk Enterprise, particularly for on-premises environments.</p>
+          <p>The <strong>Splunk POD Software Installation</strong> offering accelerates the deployment of the Splunk platform using Kubernetes containers on your Cisco UCS hardware platform. Our technical experts leverage our Splunk Kubernetes Installer (SKI) and config files to deploy an optimal solution for your Splunk POD environment based on Splunk best practices.</p>
+          <a class="platform-guide-link" href="https://www.splunk.com/en_us/pdfs/resources/solution-guide/splunk-pod-software-installation.pdf" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="platform-slide-footer"><span class="platform-slide-status">6 / 6</span><button class="platform-slide-next" type="button" aria-label="Return to first page">→</button></div>
+      </section>
+    </div></div></div>
+  </dialog>
+
+  <dialog class="platform-dialog" id="platform-acceleration-dialog" aria-label="Platform acceleration services">
+    <div class="platform-dialog-panel"><div class="platform-carousel"><div class="platform-track">
+      <section class="platform-slide">
+        <div class="platform-copy">
+          <p><strong>Expand</strong> the value of Splunk Enterprise by optimizing your environment using the technical expertise and best practices of Splunk Professional Services.</p>
+          <h3 class="platform-service-heading">Accelerators</h3>
+          <ul><li><strong>Edge Processor</strong></li><li><strong>Health Check Assessment</strong></li></ul>
+        </div>
+        <div class="platform-slide-footer"><span class="platform-slide-status">1 / 3</span><button class="platform-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="platform-slide" aria-hidden="true">
+        <div class="platform-copy">
+          <span class="platform-slide-kicker">Edge Processor</span>
+          <p>The <strong>Edge Processor Accelerator</strong> is a data processing solution that works at the edge of your network to filter, mask, and transform your data close to its source before routing the processed data to your Splunk platform and external environments.</p>
+          <p>By paring down and sanitizing data before sending it out to Splunk indexes or Amazon S3 buckets, you can reduce data storage costs and help prevent confidential data from leaving your network. The Edge Processor Accelerator offering is a service to help you rapidly deploy and configure Edge Processors for different use cases within your environment.</p>
+          <a class="platform-guide-link" href="https://www.splunk.com/en_us/resources/splunk-edge-processor-accelerator.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="platform-slide-footer"><span class="platform-slide-status">2 / 3</span><button class="platform-slide-next" type="button" aria-label="Next page">→</button></div>
+      </section>
+      <section class="platform-slide" aria-hidden="true">
+        <div class="platform-copy">
+          <span class="platform-slide-kicker">Health Check Assessment</span>
+          <p>The <strong>Splunk Health Check Assessment</strong> is designed to provide a comprehensive technical evaluation of your Splunk Enterprise core platform environment. The goal is to uncover opportunities for configuration enhancements and performance optimizations, to get the most out of your Splunk investment.</p>
+          <p>At the end of the engagement, you receive a comprehensive report detailing the findings, potential areas of improvement, and recommended actions to optimize the performance of your Splunk environment.</p>
+          <a class="platform-guide-link" href="https://www.splunk.com/en_us/resources/splunk-health-check-assessment.html" target="_blank" rel="noopener noreferrer">View Services Solution Guide</a>
+        </div>
+        <div class="platform-slide-footer"><span class="platform-slide-status">3 / 3</span><button class="platform-slide-next" type="button" aria-label="Return to first page">→</button></div>
+      </section>
+    </div></div></div>
+  </dialog>
 
   <script>
     // Touch/keyboard feedback
@@ -186,6 +368,42 @@
       };
       el.addEventListener('touchstart', flash, {passive:true});
       el.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); flash(); }});
+    });
+
+    document.querySelectorAll('.platform-dialog').forEach(dialog => {
+      const track = dialog.querySelector('.platform-track');
+      const slides = [...dialog.querySelectorAll('.platform-slide')];
+      let page = 0;
+
+      const showPage = nextPage => {
+        page = (nextPage + slides.length) % slides.length;
+        track.style.transform = `translateX(-${page * 100}%)`;
+        slides.forEach((slide, index) => slide.setAttribute('aria-hidden', index === page ? 'false' : 'true'));
+      };
+
+      dialog.querySelectorAll('.platform-slide-next').forEach(button => {
+        button.addEventListener('click', () => showPage(page + 1));
+      });
+      dialog.addEventListener('click', event => {
+        if (event.target === dialog) dialog.close();
+      });
+      dialog.addEventListener('close', () => {
+        document.body.classList.remove('modal-open');
+        showPage(0);
+      });
+      dialog.addEventListener('keydown', event => {
+        if (event.key === 'ArrowRight') showPage(page + 1);
+        if (event.key === 'ArrowLeft') showPage(page - 1);
+      });
+    });
+
+    document.querySelectorAll('.platform-info-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const dialog = document.getElementById(button.dataset.dialog);
+        if (!dialog) return;
+        document.body.classList.add('modal-open');
+        dialog.showModal();
+      });
     });
   </script>
 </body>

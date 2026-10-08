@@ -201,6 +201,28 @@
       -webkit-mask-composite:destination-out;mask-composite:exclude;
     }
     .cx-service-list li{position:relative;z-index:2;padding-left:6px;margin:0 0 16px}
+    .cx-service-list a{color:#67d9ff;text-decoration:none}
+    .cx-service-list a:hover{color:#a6ebff}
+    .cx-service-list a:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:2px}
+    .cx-services-nav-wrap{margin:30px auto 0;text-align:center}
+    .cx-services-nav-title{margin:0 0 14px;color:#f4f6f8;font-size:clamp(13px,1.1vw,16px);font-weight:600}
+    .cx-services-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+    .cx-services-nav a{
+      position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;
+      min-height:42px;padding:10px 18px;border:2px solid transparent;border-radius:999px;color:#fff;text-decoration:none;
+      background:linear-gradient(rgba(7,11,13,.66),rgba(7,11,13,.66)) padding-box,
+        linear-gradient(90deg,var(--cdf-orange,#ff9000),var(--cdf-magenta,#ff007f)) border-box;
+      box-shadow:0 10px 22px rgba(0,0,0,.24);font-size:13px;font-weight:600;
+      transition:transform .2s ease,filter .2s ease,box-shadow .2s ease;
+    }
+    .cx-services-nav a::before{
+      content:"";position:absolute;inset:-80% -45%;z-index:-1;pointer-events:none;
+      background:linear-gradient(110deg,transparent 38%,rgba(255,255,255,.18) 50%,transparent 62%);
+      transform:translateX(-70%) rotate(4deg);transition:transform .5s ease;
+    }
+    .cx-services-nav a:hover{transform:translateY(-2px);filter:brightness(1.1);box-shadow:0 14px 28px rgba(0,0,0,.34)}
+    .cx-services-nav a:hover::before,.cx-services-nav a:focus-visible::before{transform:translateX(70%) rotate(4deg)}
+    .cx-services-nav a:focus-visible{outline:3px solid #fff;outline-offset:3px}
     .cx-services-tagline{margin:34px 0 0;text-align:center;font-size:clamp(13px,1.1vw,16px);font-weight:600;color:#f4f6f8}
     @media (max-width:900px){.cx-services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cx-service-list{min-height:230px}}
     @media (max-width:560px){.cx-services-grid{grid-template-columns:1fr}.cx-service-list{min-height:0}.cx-service-image{margin-bottom:16px}}
@@ -334,9 +356,9 @@
             <h2><span>CX Subscription</span><span>Services</span></h2>
             <ul class="cx-service-list">
               <li>Annual subscriptions for continuous expert guidance</li>
-              <li>On-Demand Services (ODS) for task-based help</li>
-              <li>TAM Services for designated technical expertise and guidance</li>
-              <li>Forward Deployed Engineers (FDE) for Splunk Agent Observability integration</li>
+              <li><a href="https://www.splunk.com/en_us/pdfs/data-sheets/splunk-on-demand-services-catalog.pdf" target="_blank" rel="noopener noreferrer">On-Demand Services (ODS)</a> for task-based help</li>
+              <li><a href="https://www.splunk.com/en_us/resources/splunk-technical-account-manager-solution-guide.html" target="_blank" rel="noopener noreferrer">TAM Services</a> for designated technical expertise and guidance</li>
+              <li><a href="https://www.splunk.com/en_us/pdfs/resources/solution-guide/forward-deployed-engineer-solution-guide.pdf" target="_blank" rel="noopener noreferrer">Forward Deployed Engineer (FDE)</a> for Splunk Agent Observability integration</li>
             </ul>
           </section>
           <section class="cx-service-column">
@@ -369,6 +391,16 @@
             </ul>
           </section>
         </div>
+        <nav class="cx-services-nav-wrap" aria-label="Explore professional services by solution">
+          <p class="cx-services-nav-title">Explore professional services by solution</p>
+          <div class="cx-services-nav">
+            <a href="bi.html">Business Intelligence</a>
+            <a href="security.html">Security</a>
+            <a href="observability.html">Observability</a>
+            <a href="ai.html">AI</a>
+            <a href="platform.html">Platform</a>
+          </div>
+        </nav>
         <p class="cx-services-tagline">Accelerate time-to-value of your Splunk investments</p>
       </div>
     </div>
